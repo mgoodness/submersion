@@ -33,7 +33,9 @@ claude -w pr-<number>
 
 ### Worktree initialization
 
-After creating a new worktree, always run these steps before doing anything else:
+`.config/wt.toml` post-start hooks automate all three steps when using
+`wt switch --create` (via `/wt-switch-create`). If the hooks haven't finished
+or you're initializing manually, run these in order:
 
 1. `git submodule update --init --recursive` — worktrees do not inherit
    initialized submodules from the main working tree; libdivecomputer and any
@@ -41,6 +43,8 @@ After creating a new worktree, always run these steps before doing anything else
 2. `flutter pub get` — worktrees have their own `.dart_tool` and `build`
    directories, and the native platform channel builds (libdivecomputer) need
    their own build artifacts per worktree.
+3. `dart run build_runner build --delete-conflicting-outputs` — regenerates
+   Drift and Mockito generated files, which are per-worktree build artifacts.
 
 ### Cleanup
 
