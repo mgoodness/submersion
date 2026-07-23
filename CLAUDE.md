@@ -54,6 +54,45 @@ Add `.claude/worktrees/` to `.gitignore`. When exiting a worktree session,
 Claude Code will prompt to keep or remove the worktree if changes exist.
 Periodically run `git worktree prune` to clean up stale references.
 
+### Local Flutter version
+
+This machine's Homebrew Flutter cask lags the CI-pinned version in
+`.github/flutter-version.txt` — check that file against `flutter --version`
+before assuming a build/test failure is code-related; a stale local SDK can
+produce misleading compile errors unrelated to the change under test.
+
+The fix is `mise`, pinned at the workspace level in `~/Code/github.com/mise.toml`
+(covers every repo under `~/Code/github.com/`, not just this one) — bump the
+`flutter` version there, not a repo-local `mise.toml`. `mise`'s shims are not
+wired into this machine's PATH for either shell (zsh's non-interactive
+`.zshenv` or fish's `config.fish`), so use `mise exec -- flutter ...` /
+`mise exec -- dart ...` explicitly rather than assuming `flutter`/`dart` on
+PATH resolve to the mise-managed version.
+
+### Local macOS signing
+
+`macos/Runner.xcodeproj/project.pbxproj`, `macos/Runner/Info.plist`,
+`macos/Podfile.lock`, and `macos/Runner/RunnerDebug.entitlements` here on
+`agent-context` carry a personal-machine signing override — kept off `main`
+for the same reason as the worktrunk hooks above, plus a harder reason: the
+override is not safe to upstream. It repoints the org's `DEVELOPMENT_TEAM`
+(`8U3RSKF42Q`) and bundle id (`app.submersion`) to a personal Apple ID
+team/bundle id so `flutter run -d macos` / `xcodebuild` can sign locally
+without an invite to the org's Apple Developer team. Never merge these files'
+committed-here state into a PR — they exist solely so the worktree init hook
+restores a working local build automatically. Building also needs the Xcode
+account actually signed in (Xcode > Settings > Accounts) and
+`-allowProvisioningUpdates` passed to `xcodebuild` if invoking it directly
+instead of `flutter run`.
+
+Bundled into this override (not split out, since only the combination has
+been proven to build): an `objectVersion` bump (54 → 60) and a switch of
+Flutter's plugin registration to Swift Package Manager, which happened as a
+side effect of Xcode resolving the project on a newer Xcode version. That
+SPM-migration part may be worth proposing upstream separately some day, but
+it's untested against the CI-pinned Xcode version — don't assume it's safe
+to promote out of this personal overlay without validating that first.
+
 ## Quick Start
 
 ```bash

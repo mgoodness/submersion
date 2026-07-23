@@ -68,6 +68,8 @@
 	<string>$(PRODUCT_NAME)</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -79,34 +81,42 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>FLTEnableMergedPlatformUIThread</key>
+	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.sports</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
-	<key>NSHumanReadableCopyright</key>
-	<string>$(PRODUCT_COPYRIGHT)</string>
-	<key>NSMainNibFile</key>
-	<string>MainMenu</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
-	<key>FLTEnableMergedPlatformUIThread</key>
-	<false/>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Submersion uses Bluetooth to connect to dive computers and import dive data.</string>
-	<key>NSLocationUsageDescription</key>
-	<string>Submersion uses your location to automatically record GPS coordinates when you create or edit dive sites, so you can remember exactly where you dived. Location data is stored locally on your device and is never sent to external servers.</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>Submersion imports your Apple Watch dive data including depth, temperature, and heart rate to create detailed dive logs.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Submersion can record dive activities to your Health app.</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>$(PRODUCT_COPYRIGHT)</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Submersion uses your location to automatically record GPS coordinates when you create or edit dive sites, so you can remember exactly where you dived. Location data is stored locally on your device and is never sent to external servers.</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Submersion accesses your photo library to attach images to dive logs.</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+	<key>SUAutomaticallyUpdate</key>
+	<true/>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUFeedURL</key>
+	<string>https://github.com/submersion-app/submersion/releases/latest/download/appcast.xml</string>
+	<key>SUPublicEDKey</key>
+	<string>XHQ9oigpC8fdjMcsVJQn5gfgYoWocVOb2G4M6IvexJk=</string>
+	<key>SUScheduledCheckInterval</key>
+	<integer>14400</integer>
 	<key>UTImportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -164,15 +174,5 @@
 			</dict>
 		</dict>
 	</array>
-	<key>SUFeedURL</key>
-	<string>https://github.com/submersion-app/submersion/releases/latest/download/appcast.xml</string>
-	<key>SUPublicEDKey</key>
-	<string>XHQ9oigpC8fdjMcsVJQn5gfgYoWocVOb2G4M6IvexJk=</string>
-	<key>SUEnableAutomaticChecks</key>
-	<true/>
-	<key>SUAutomaticallyUpdate</key>
-	<true/>
-	<key>SUScheduledCheckInterval</key>
-	<integer>14400</integer>
 </dict>
 </plist>
