@@ -33,9 +33,11 @@ claude -w pr-<number>
 
 ### Worktree initialization
 
-`.config/wt.toml` post-start hooks automate all three steps when using
-`wt switch --create` (via `/wt-switch-create`). If the hooks haven't finished
-or you're initializing manually, run these in order:
+Personal `worktrunk` project-scoped hooks (`~/.config/worktrunk/config.toml`,
+under `[projects."github.com/mgoodness/submersion"]`) automate all three
+steps when using `wt switch --create` (via `/wt-switch-create`) — kept out of
+the repo so they never surface in an upstream PR diff. If the hooks haven't
+finished or you're initializing manually, run these in order:
 
 1. `git submodule update --init --recursive` — worktrees do not inherit
    initialized submodules from the main working tree; libdivecomputer and any
