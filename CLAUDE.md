@@ -202,6 +202,21 @@ Tables defined in `lib/core/database/database.dart`:
   session link to PR bodies. Write PR descriptions with the substantive summary
   only.
 
+### PR and Issue Templates
+
+- PRs and issues on `submersion-app/submersion` must follow the templates in
+  `.github/PULL_REQUEST_TEMPLATE.md` and `.github/ISSUE_TEMPLATE/bug_report.md`
+  verbatim — same headings, same casing, same checkbox wording. Read the
+  template file fresh each time rather than recalling its shape; it can
+  change.
+- Don't fold sections together (e.g. merging `## Changes` into `## Summary`)
+  or substitute custom checkboxes for the template's exact ones.
+- Keep the `## Screenshots` heading even when the change has no visual —
+  state why (e.g. "text-only change") instead of omitting the section.
+- Discovered on PR #711 (dive center location fix): the first draft merged
+  Changes into Summary, used non-template Test Plan checkboxes, and dropped
+  Screenshots entirely, which needed a follow-up edit to fix.
+
 ## Critical Rules
 
 ### 1. Code Organization
